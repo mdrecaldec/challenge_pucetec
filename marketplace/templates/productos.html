@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subir Producto</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        .header {
+            background-color: #007bff;
+            color: white;
+            padding: 10px;
+            text-align: right;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header h1 {
+            margin: 0;
+            padding: 0 20px;
+            font-size: 24px;
+            text-align: left;
+        }
+        .btn-logout {
+            display: inline-block;
+            padding: 8px 15px;
+            background-color: #dc3545;
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: bold;
+            margin-right: 20px;
+        }
+        .btn-logout:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>EcoMarketplace - Subir Producto</h1>
+        <a href="{% url 'logout' %}" class="btn-logout">Cerrar Sesión</a>
+    </header>
+
+    <div class="container mt-5">
+        <h1>Subir Producto</h1>
+        <form method="POST" action="" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre del Producto</label>
+                <input type="text" name="nombre" id="nombre" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="descripcion" class="form-label">Descripción</label>
+                <textarea name="descripcion" id="descripcion" class="form-control" rows="3" required></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="categoria" class="form-label">Categoría</label>
+                <select name="categoria" id="categoria" class="form-select" required>
+                    <option value="">Selecciona una categoría</option>
+                    <option value="ropa">Ropa</option>
+                    <option value="tecnologia">Tecnología</option>
+                    <option value="libros">Libros</option>
+                    <option value="muebles">Muebles</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="accion" class="form-label">Acción</label>
+                <select name="accion" id="accion" class="form-select" required>
+                    <option value="">Selecciona una acción</option>
+                    <option value="venta">Venta</option>
+                    <option value="intercambio">Intercambio</option>
+                    <option value="donacion">Donación</option>
+                </select>
+            </div>
+            <div class="mb-3" id="precio-div">
+                <label for="precio" class="form-label">Precio (Solo para Ventas)</label>
+                <input type="number" name="precio" id="precio" class="form-control" step="0.01">
+            </div>
+            <div class="mb-3">
+                <label for="imagen" class="form-label">Subir Imagen</label>
+                <input type="file" name="imagen" id="imagen" class="form-control" accept="image/*">
+            </div>
+            <button type="submit" class="btn btn-primary">Subir Producto</button>
+        </form>
+        {% if messages %}
+            <div class="mt-3">
+                {% for message in messages %}
+                    <div class="alert alert-info">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+        <a href="{% url 'page' %}" class="btn btn-secondary mt-3">Volver a la Página Principal</a>
+    </div>
+
+    <script>
+        document.getElementById('accion').addEventListener('change', function() {
+            var precioDiv = document.getElementById('precio-div');
+            if (this.value === 'venta') {
+                precioDiv.style.display = 'block'; // Muestra el precio solo si la acción es venta
+            } else {
+                precioDiv.style.display = 'none'; // Oculta el precio para otras acciones
+            }
+        });
+    </script>
+</body>
+</html>

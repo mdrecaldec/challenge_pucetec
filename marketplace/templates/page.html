@@ -1,0 +1,78 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoMarketplace</title>
+    <link rel="stylesheet" href="{% static 'media/styles.css' %}">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1 class="logo">EcoMarketplace</h1>
+            <nav class="nav">
+                <ul class="nav-links">
+                    <li>
+                        <a href="#">Productos</a>
+                        <ul class="dropdown">
+                            <li><a href="{% url 'subir_producto' %}">Subir Productos</a></li>
+                            <li><a href="{% url 'listar_productos' %}">Elegir Productos</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="{% url 'logout' %}" class="btn-logout">Cerrar Sesión</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <video autoplay muted loop class="hero-video">
+            <source src="{% static 'media/video.mp4' %}" type="video/mp4">
+            Tu navegador no soporta el elemento de video.
+        </video>
+        <div class="overlay"></div>
+        <div class="container hero-content">
+            <h1>Reduce tu Huella de Carbono</h1>
+            <p>Intercambia, vende o dona productos para darles una segunda vida y ayudar al planeta.</p>
+            <a href="#cta" class="btn">Comienza Ahora</a>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <h2>¿Qué es EcoMarketplace?</h2>
+            <p>Somos una plataforma dedicada a la economía circular, promoviendo el intercambio, la venta y la donación de productos para reducir los desechos y el impacto ambiental.</p>
+        </div>
+    </section>
+
+    <section id="features" class="features">
+        <div class="container">
+            <div class="features-grid">
+                <div class="feature-card">
+                    <img src="{% static 'media/imagen1.png' %}" alt="Intercambio" class="feature-image">
+                    <h3>Intercambios</h3>
+                    <p>Encuentra personas interesadas en intercambiar productos que ya no necesitas.</p>
+                </div>
+                <div class="feature-card">
+                    <img src="{% static 'media/imagen2.png' %}" alt="Venta" class="feature-image">
+                    <h3>Ventas</h3>
+                    <p>Vende tus productos usados y gana dinero mientras ayudas al medio ambiente.</p>
+                </div>
+                <div class="feature-card">
+                    <img src="{% static 'media/imagen3.png' %}" alt="Donación" class="feature-image">
+                    <h3>Donaciones</h3>
+                    <p>Dona productos para quienes más los necesitan, evitando que terminen en la basura.</p>
+                </div>
+                <div class="feature-card">
+                    <img src="{% static 'media/imagen4.png' %}" alt="Productos" class="feature-image">
+                    <h3>Productos</h3>
+                    <p>Explora una variedad de productos para darles una nueva vida.</p>
+                </div>
+            </div>
+        </div> 
+    </section>
+</body>
+</html>
